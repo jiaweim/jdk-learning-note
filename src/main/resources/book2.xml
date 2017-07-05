@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books.xsd">
+	<book isbn="7506342605">
+		<name>《水浒传》</name>
+		<price>80</price>
+		<author>施耐庵</author>
+		<year>元末</year>
+	</book>
+	<book isbn="7020008720">
+		<name>《西游记》</name>
+		<price>90</price>
+		<author>吴承恩</author>
+		<year>明代</year>
+	</book>
+</books>

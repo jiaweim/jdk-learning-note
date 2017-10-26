@@ -28,19 +28,20 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @date 2016.09.24, 2:43 PM
  */
-public class SwitchTest {
+class SwitchTest
+{
 
     /**
      * If switch is coupled with while loop, what if we put a continue keyword in the switch:
      * continue of the switch
      */
     @Test
-    public void test(){
+    void test()
+    {
+        int i = 10;
+        while (i > 0) {
 
-        int i=10;
-        while(i > 0){
-
-            switch (i){
+            switch (i) {
                 case 5:
                     System.out.println(i);
                     break;
@@ -50,15 +51,10 @@ public class SwitchTest {
                     break;
             }
 
-            if(i == 3){
-                System.out.println("value");
-            }
-
-            System.out.println("o:"+i);
+            System.out.println("o:" + i);
 
             i--;
         }
-
 
     }
 

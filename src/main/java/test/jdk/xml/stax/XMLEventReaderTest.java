@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package test.jdk.util.concurrent;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
+package test.jdk.xml.stax;
 
 /**
- * @author JiaweiMao on 2017.05.25
- * @since 1.0-SNAPSHOT
+ * @author JiaweiMao
+ * @version 1.0.0
+ * @since 12 Oct 2017, 10:01 AM
  */
-public class ConnectionManager {
+public class XMLEventReaderTest
+{
+    public static void main(String[] args)
+    {
 
-    private static Connection connection = null;
 
-    public static Connection openConnection(){
-        if(connection == null)
-            connection = DriverManager.getConnection();
     }
+
 }

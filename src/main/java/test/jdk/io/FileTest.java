@@ -17,11 +17,12 @@
 package test.jdk.io;
 
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,29 +32,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 1.0.0
  * @date Jul 19 2016, 10:31
  */
-public class FileTest {
+public class FileTest
+{
 
 
-    @Test
-    public void testFilter(){
+    public void testFilter()
+    {
 
         File file = new File("E:\\data\\donghao");
 
         File[] files = file.listFiles((dir, name) -> name.endsWith(".csv"));
-        for(File file1 : files){
+        for (File file1 : files) {
             System.out.println(file1.getName());
         }
 
     }
 
     @Test
-    public void testCreateTempFile() throws IOException {
+    public void testCreateTempFile() throws IOException
+    {
         // creates temporary file
         // prefix, suffix, directory
         File f = File.createTempFile("tmp", ".txt", new File("E:\\test"));
 
         // prints absolute path
-        System.out.println("File path: "+f.getAbsolutePath());
+        System.out.println("File path: " + f.getAbsolutePath());
 
         // deletes file when the virtual machine terminate
         f.deleteOnExit();
@@ -62,7 +65,7 @@ public class FileTest {
         f = File.createTempFile("tmp", null, new File("D:/"));
 
         // prints absolute path
-        System.out.print("File path: "+f.getAbsolutePath());
+        System.out.print("File path: " + f.getAbsolutePath());
 
         // deletes file when the virtual machine terminate
         f.deleteOnExit();
@@ -77,7 +80,8 @@ public class FileTest {
      * 测试用于程序是否可以执行此抽象路径名表示的文件
      */
     @Test
-    public void testCanExecute(){
+    public void testCanExecute()
+    {
         File f = new File("C:\\Windows");
         assertTrue(f.canExecute());
         f = new File("C:\\xx");
@@ -88,7 +92,8 @@ public class FileTest {
      * 文件存在，并可以读取
      */
     @Test
-    public void testCanRead(){
+    public void testCanRead()
+    {
         File f = new File("C:\\Windows");
         assertTrue(f.canRead());
         f = new File("C:\\xx");
@@ -96,7 +101,8 @@ public class FileTest {
     }
 
     @Test
-    public void testCanWrite(){
+    public void testCanWrite()
+    {
         File f = new File("C:\\Windows");
         assertTrue(f.canWrite());
         f = new File("C:\\xx");
@@ -104,22 +110,25 @@ public class FileTest {
     }
 
     @Test
-    public void testSetReadOnly(){
+    void testSetReadOnly()
+    {
         File f = new File("E:\\data\\liuzheyi\\fragment\\s1.mgf");
         assertTrue(f.setReadOnly());
         assertFalse(f.canWrite());
     }
 
     @Test
-    public void getName(){
+    void getName()
+    {
         File f = new File("E:\\data\\liuzheyi\\fragment\\s1.mgf");
-        System.out.println(f.getName());
+        assertEquals("s1.mgf", f.getName());
     }
 
     @Test
-    public void separator(){
+    public void separator()
+    {
 
-        String file = "E:\\data\\test\\phos"+File.separator+"F007707.csv";
+        String file = "E:\\data\\test\\phos" + File.separator + "F007707.csv";
 
         System.out.println(new File(file).exists());
 

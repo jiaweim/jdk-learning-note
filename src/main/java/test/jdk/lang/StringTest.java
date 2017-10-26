@@ -17,7 +17,7 @@
 package test.jdk.lang;
 
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,12 +26,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.00
  * @date Jun 14 2016, 21:24
  */
-public class StringTest {
+public class StringTest
+{
 
     @Test
-    public void testPattern(){
+    public void testToString()
+    {
+        Double value = null;
+        System.out.println(value.toString());
+    }
 
-        String  pro = "XRHLAPTGNAPASRGLPTTTQRVGSECPDRLAMDFGGAGAAQQGLTDSCQSGGVPTAVQN" +
+    @Test
+    void testEquals()
+    {
+        String a = "String";
+        String b = "String";
+
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+    }
+
+    @Test
+    public void testPattern()
+    {
+
+        String pro = "XRHLAPTGNAPASRGLPTTTQRVGSECPDRLAMDFGGAGAAQQGLTDSCQSGGVPTAVQN" +
                 "LAPRAAVAAAAPRAVAPYKYASSVRSPHPAIQPLQAPQPAVHVQGQEPLTASMLAAAPPQ" +
                 "EQKQMLGERLFPLIQTMHSNLAGKITGMLLEIDNSELLHMLESPESLRSKVDEAVAVLQA" +
                 "HHAKKEAAQKDSKAK";
@@ -46,22 +65,25 @@ public class StringTest {
      * 常规类型、字符类型和数值类型格式化：%[index$][flags][width][.precision]conversion
      */
     @Test
-    public void testFormat() {
-
+    public void testFormat()
+    {
+        double value = 544.6;
+        System.out.println(String.format("%.2f", value));
 
     }
 
 
     @Test
-    public void split(){
-        String s= ">sp|Q8I6R7|ACN2_ACAGO Acanthoscurrin-2 (Fragment) OS=Acanthoscurria gomesiana GN=acantho2 PE=1 SV=1";
+    public void split()
+    {
+        String s = ">sp|Q8I6R7|ACN2_ACAGO Acanthoscurrin-2 (Fragment) OS=Acanthoscurria gomesiana GN=acantho2 PE=1 SV=1";
         String[] split = s.split("\\|");
         System.out.println(split.length);
-
     }
 
     @Test
-    public void testSplit() {
+    public void testSplit()
+    {
 
         String string = "AGOAIGJ;AEGAG,AEGA";
         String[] strings = string.split("[;,]");
@@ -75,19 +97,22 @@ public class StringTest {
      * 否则，添加该字符串到pool中，并返回该字符串的引用。
      */
     @Test
-    public void testIntern() {
+    public void testIntern()
+    {
 
     }
 
     @Test
-    public void testIndexOf() {
+    public void testIndexOf()
+    {
         String seq = "AOIDJGOAIYOGH";
         int idx = seq.indexOf("DJ");
         assertEquals(3, idx);
     }
 
     @Test
-    public void testCompareTo() {
+    public void testCompareTo()
+    {
         String arr[] = {"Now", "add", "ball", "collect", "directly", "epsilo"};
         for (int j = 0; j < arr.length; j++) {
             for (int i = j + 1; i < arr.length; i++) {

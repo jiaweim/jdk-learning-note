@@ -17,8 +17,8 @@
 package test.jdk.xml.stax;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -26,7 +26,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
 
 /**
@@ -34,13 +34,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0.0
  * @date 2016.09.25, 7:06 PM
  */
-public class XMLStreamReaderTest {
+public class XMLStreamReaderTest
+{
 
     private XMLStreamReader reader;
 
     @Test
-    void testNext() throws XMLStreamException {
-
+    void testNext() throws XMLStreamException
+    {
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.next());
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.getEventType());
 
@@ -206,8 +207,8 @@ public class XMLStreamReaderTest {
     }
 
     @Test
-    void testNextTag() throws XMLStreamException {
-
+    void testNextTag() throws XMLStreamException
+    {
         // start of books
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.nextTag());
         assertEquals("books", reader.getLocalName());
@@ -239,10 +240,30 @@ public class XMLStreamReaderTest {
         assertEquals("price", reader.getLocalName());
     }
 
-    @BeforeEach
-    void setUp() throws XMLStreamException {
-        InputStream is = XMLStreamReaderTest.class.getResourceAsStream("book2.xml");
+    @BeforeMethod
+    void setUp() throws XMLStreamException
+    {
+        InputStream is = XMLStreamReaderTest.class.getClassLoader().getResourceAsStream("book2.xml");
         XMLInputFactory factory = XMLInputFactory.newInstance();
         reader = factory.createXMLStreamReader(is);
+    }
+
+    @Test
+    void test() throws XMLStreamException
+    {
+        while (reader.hasNext()) {
+            int event = reader.next();
+            if (event == XMLStreamConstants.START_ELEMENT) {
+//                if (reader.getLocalName().equals("name")) {
+//                    reader.next();
+//                    System.out.println(reader.getText());
+//                }
+
+
+            }
+            if(event == XMLStreamConstants.CHARACTERS){
+                System.out.println(reader.getText());
+            }
+        }
     }
 }

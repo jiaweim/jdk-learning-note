@@ -1,0 +1,45 @@
+网络通信和流分不开：
+
+低级输入流：
+ByteArrayInputStream, 从内存中读取字节数据
+FileInputStream, 从本地文件系统中读取数据
+PipedInputStream, 从线程管道中读取数据
+StringBufferInputStream, 从字符串中读取数据字节
+SequenceInputStream, 从两个或多个低级流中读取数据字节，当到达流的末尾时从一个流转到另一个流中
+System.in, 从控制台读取字节数据
+
+低级输出流：
+ByteArrayOutputStream, 把字节数据写入数组
+FileOutputStream, 把字节数据写入本地文件
+PipedOutputStream, 把字节数据写入连接到PipedOutputStream的通信管道
+System.err, 本质为PrintStream
+System.out, 本质为PrintStream
+
+过滤器流：
+FilterInputStream
+FilterOutputStream
+
+输入过滤器流：
+BufferedInputStream, 缓冲输入流，提高效率
+DataInputStream, 从输入流中读取基本数据类型，如int, float, double设置一行文本
+LineNumberInputStream, 维持了一个计数器，用于记录当前读取是哪一行
+PushBackInputStream, 允许把数据字节向后退到流的首部
+
+输出过滤流
+BufferedOutputStream
+DataOutputStream
+PrintStream
+
+Reader和Writer:
+低级Reader和Writer:
+CharArrayReader, CharArrayWriter
+FileReader, FileWriter
+PipedReader, PipedWriter
+StringReader, StringWriter
+InputStreamReader, OutputStreamWriter
+
+过滤器Reader和Writer
+BufferedReader, BufferedWriter
+FilterReader, FilterWriter
+PushBackReader, PrintWriter
+LineNumberReader

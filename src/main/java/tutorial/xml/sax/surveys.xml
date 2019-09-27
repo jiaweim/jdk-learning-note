@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<surveys>
+<response username="bob">
+   <question subject="appearance">A</question>
+   <question subject="communication">B</question>
+   <question subject="ship">A</question>
+   <question subject="inside">D</question>
+   <question subject="implant">B</question>
+</response>
+<response username="sue">
+   <question subject="appearance">C</question>
+   <question subject="communication">A</question>
+   <question subject="ship">A</question>
+   <question subject="inside">D</question>
+   <question subject="implant">A</question>
+</response>
+<response username="carol">
+   <question subject="appearance">A</question>
+   <question subject="communication">C</question>
+   <question subject="ship">A</question>
+   <question subject="inside">D</question>
+   <question subject="implant">C</question>
+</response>
+</surveys>

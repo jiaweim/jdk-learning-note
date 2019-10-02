@@ -18,6 +18,7 @@ package tutorial.util;
 
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 import static org.testng.Assert.assertEquals;
@@ -29,6 +30,25 @@ import static org.testng.Assert.assertEquals;
  * @date Jul 18 2016, 16:55
  */
 public class PriorityQueueTest {
+
+    /**
+     * the order is not guaranteed.
+     */
+    @Test
+    public void testFor() {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.offer(5);
+        queue.offer(1);
+        queue.offer(2);
+        for (Integer integer : queue) {
+            System.out.println(integer);
+        }
+
+        Iterator<Integer> iterator = queue.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
 
     @Test
     public void testConstr() {

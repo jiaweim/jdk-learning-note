@@ -29,11 +29,10 @@ import static org.testng.Assert.assertTrue;
  * @version 1.0.0
  * @since 27 Jan 2019, 2:51 PM
  */
-public class ByteBufferTest
-{
+public class ByteBufferTest {
+
     @Test
-    public void testAllocate()
-    {
+    public void testAllocate() {
         Buffer buffer = ByteBuffer.allocate(7);
         assertEquals(buffer.capacity(), 7);
         assertEquals(buffer.limit(), 7);
@@ -52,5 +51,29 @@ public class ByteBufferTest
         assertEquals(buffer.position(), 3);
         assertEquals(buffer.remaining(), 2);
         assertEquals(buffer.capacity(), 7);
+
+        buffer = ByteBuffer.allocate(10);
+        assertTrue(buffer.hasArray());
+        assertEquals(buffer.arrayOffset(), 0);
+        assertEquals(buffer.capacity(), 10);
+        assertEquals(buffer.limit(), 10);
+        assertEquals(buffer.position(), 0);
+        assertEquals(buffer.remaining(), 10);
+    }
+
+    @Test
+    public void testWrap() {
+        byte[] bytes = new byte[200];
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        buffer.put((byte) 1);
+        assertEquals(bytes[0], 1);
+
+        ByteBuffer b2 = ByteBuffer.wrap(bytes, 10, 50);
+        assertTrue(b2.hasArray());
+        assertEquals(b2.arrayOffset(), 0);
+        assertEquals(b2.capacity(), 200);
+        assertEquals(b2.position(), 10);
+        assertEquals(b2.limit(), 60);
+        b2.duplicate();
     }
 }

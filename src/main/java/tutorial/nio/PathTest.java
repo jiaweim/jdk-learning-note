@@ -45,6 +45,9 @@ public class PathTest {
 
         Path p2 = Paths.get("D:/", "test", "p.xml");
         assertEquals(p2.toString(), "D:\\test\\p.xml");
+
+        Path path1 = Paths.get("D:/test", ".xml");
+        System.out.println(path1);
     }
 
     @Test

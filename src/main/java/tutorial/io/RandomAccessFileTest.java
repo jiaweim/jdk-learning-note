@@ -27,8 +27,7 @@ import static org.testng.Assert.assertEquals;
  * @author JiaweiM
  * @date Sep 1, 2015 9:08:18 AM
  */
-public class RandomAccessFileTest
-{
+public class RandomAccessFileTest {
 
 //    RandomAccessFile raFile;
 //
@@ -63,8 +62,7 @@ public class RandomAccessFileTest
 //    }
 
     @Test
-    public void test() throws IOException
-    {
+    public void test() throws IOException {
         File file = new File("test");
         RandomAccessFile raf = new RandomAccessFile(file, "rw");
         raf.writeInt(1);

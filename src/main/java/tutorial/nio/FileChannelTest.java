@@ -31,11 +31,9 @@ import java.nio.channels.FileLock;
  * @version 1.0.0
  * @date 2016.09.20, 10:10 PM
  */
-public class FileChannelTest
-{
+public class FileChannelTest {
     @Test
-    public void testRead() throws FileNotFoundException
-    {
+    public void testRead() throws FileNotFoundException {
         RandomAccessFile afile = new RandomAccessFile(getClass().getClassLoader().getResource("sample.txt").getFile(), "rq");
         FileChannel inChannel = afile.getChannel();
         ByteBuffer buffer = ByteBuffer.allocate(48);
@@ -47,8 +45,7 @@ public class FileChannelTest
      * locked file
      */
     @Test
-    public void test1()
-    {
+    public void test1() {
         File f = new File("E:\\test\\afile.txt");
         RandomAccessFile raf;
         try {
@@ -76,8 +73,7 @@ public class FileChannelTest
      * FileNotFoundException.
      */
     @Test
-    public void test2()
-    {
+    public void test2() {
 
         // before run this class, you must use excel to open bfile.csv first, because excle lock file
         File f = new File("E:\\test\\bfile.csv");
@@ -138,8 +134,7 @@ public class FileChannelTest
      * OverlappingFileLockException
      */
     @Test
-    public void test3SameThread()
-    {
+    public void test3SameThread() {
         System.out.println("*********************Test lock in the same thread***************");
         String filename = "E:\\test\\bfile.csv";
 
@@ -169,18 +164,15 @@ public class FileChannelTest
     }
 
     @Test
-    public void test3DifferentThread() throws IOException
-    {
+    public void test3DifferentThread() throws IOException {
         String filename = "E:\\test\\bfile.csv";
         System.out.println("*********************Test lock in the different thread***************");
         RandomAccessFile raf1 = new RandomAccessFile(filename, "rw");
         FileChannel fc1 = raf1.getChannel();
         System.out.println("Grabbing first lock");
         fc1.lock();
-        new Thread()
-        {
-            public void run()
-            {
+        new Thread() {
+            public void run() {
                 RandomAccessFile raf2;
                 try {
                     raf2 = new RandomAccessFile(filename, "rw");
@@ -200,8 +192,7 @@ public class FileChannelTest
      * returns null immediately, lock method blocks until the previous JVM release lock.
      */
     @Test
-    public void test4()
-    {
+    public void test4() {
 
     }
 

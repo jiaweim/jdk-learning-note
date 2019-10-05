@@ -18,8 +18,12 @@ package tutorial.nio;
 
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -30,6 +34,19 @@ import static org.testng.Assert.assertTrue;
  * @since 27 Jan 2019, 2:51 PM
  */
 public class ByteBufferTest {
+
+    @Test
+    public void testConvert() throws IOException {
+        FileChannel fc = new FileOutputStream("data2.txt").getChannel();
+        fc.write(ByteBuffer.wrap("Some text".getBytes()));
+        fc.close();
+
+        fc = new FileInputStream("data2.txt").getChannel();
+        ByteBuffer buff = ByteBuffer.allocate(1024);
+        fc.read(buff);
+        buff.flip();
+        buff.rewind();
+    }
 
     @Test
     public void testAllocate() {
@@ -76,4 +93,69 @@ public class ByteBufferTest {
         assertEquals(b2.limit(), 60);
         b2.duplicate();
     }
+
+    @Test
+    public void testPut() {
+        ByteBuffer buffer = ByteBuffer.allocate(6);
+        assertEquals(buffer.capacity(), 6);
+        assertEquals(buffer.limit(), 6);
+        assertEquals(buffer.position(), 0);
+        assertEquals(buffer.remaining(), 6);
+
+        buffer.put((byte) 15).put((byte) 13).put((byte) 21);
+        assertEquals(buffer.capacity(), 6);
+        assertEquals(buffer.limit(), 6);
+        assertEquals(buffer.position(), 3);
+        assertEquals(buffer.remaining(), 3);
+
+        assertEquals(buffer.get(0), 15);
+        assertEquals(buffer.get(3), 0);
+    }
+
+    @Test
+    public void testFlip() {
+        ByteBuffer buffer = ByteBuffer.allocate(6);
+        buffer.put((byte) 10).put((byte) 20).put((byte) 30);
+        assertEquals(buffer.capacity(), 6);
+        assertEquals(buffer.position(), 3);
+        assertEquals(buffer.limit(), 6);
+        assertEquals(buffer.remaining(), 3);
+
+        buffer.flip();
+        assertEquals(buffer.capacity(), 6);
+        assertEquals(buffer.position(), 0);
+        assertEquals(buffer.limit(), 3);
+        assertEquals(buffer.remaining(), 3);
+    }
+
+    @Test
+    public void testMark() {
+        ByteBuffer buffer = ByteBuffer.allocate(7);
+        buffer.put((byte) 10).put((byte) 20).put((byte) 30).put((byte) 40);
+        buffer.limit(4);
+        assertEquals(buffer.position(), 4);
+        assertEquals(buffer.limit(), 4);
+        assertEquals(buffer.capacity(), 7);
+
+        buffer.position(1);
+        assertEquals(buffer.position(), 1);
+        buffer.mark();
+
+        buffer.position(3);
+        assertEquals(buffer.position(), 3);
+        assertEquals(buffer.get(), 40);
+        assertEquals(buffer.position(), 4);
+
+        buffer.reset();
+        assertEquals(buffer.position(), 1);
+    }
+
+    @Test
+    public void testCompact() {
+        ByteBuffer buffer = ByteBuffer.allocate(7);
+        buffer.put((byte) 20).put((byte) 30).put((byte) 40);
+        buffer.compact();
+
+    }
+
 }

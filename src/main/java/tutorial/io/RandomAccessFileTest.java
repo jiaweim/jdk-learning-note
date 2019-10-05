@@ -18,6 +18,7 @@ package tutorial.io;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -29,37 +30,12 @@ import static org.testng.Assert.assertEquals;
  */
 public class RandomAccessFileTest {
 
-//    RandomAccessFile raFile;
-//
-//    @BeforeClass
-//    public void setUp()
-//    {
-//        try {
-//            raFile = new RandomAccessFile("E:\\FileFormat\\mgf.mgf", "rw");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Test
-//    public void testgetFilePointer() throws IOException
-//    {
-//        long pointer = raFile.getFilePointer();
-//        assertEquals(0, pointer);
-//
-//        for (int i = 0; i < 100; i++) {
-//            raFile.read();
-//        }
-//
-//        pointer = raFile.getFilePointer();
-//        assertEquals(100, pointer);
-//
-//        raFile.seek(200);
-//        pointer = raFile.getFilePointer();
-//        assertEquals(200, pointer);
-//
-//        System.out.println(pointer);
-//    }
+    @Test
+    public void test2() throws FileNotFoundException {
+        String file = "text.dat";
+        RandomAccessFile rf = new RandomAccessFile(file, "w");
+
+    }
 
     @Test
     public void test() throws IOException {

@@ -18,13 +18,14 @@ package tutorial.nio;
 
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * @author JiaweiMao
@@ -32,13 +33,86 @@ import java.nio.channels.FileLock;
  * @date 2016.09.20, 10:10 PM
  */
 public class FileChannelTest {
+
     @Test
-    public void testRead() throws FileNotFoundException {
-        RandomAccessFile afile = new RandomAccessFile(getClass().getClassLoader().getResource("sample.txt").getFile(), "rq");
-        FileChannel inChannel = afile.getChannel();
-        ByteBuffer buffer = ByteBuffer.allocate(48);
+    public void testWrite() throws IOException, URISyntaxException {
+
+        Path tempFile = Files.createTempFile(null, "");
+
+        FileChannel fc = new FileOutputStream(tempFile.toFile()).getChannel();
+
+        ByteBuffer buffer = ByteBuffer.allocate(12);
+        buffer.putInt(1);
+        buffer.putInt(2);
+        buffer.putInt(3);
+        buffer.flip();
+        fc.write(buffer);
+        fc.close();
+
+        fc = new RandomAccessFile(tempFile.toFile(), "rw").getChannel();
+        fc.position(Integer.BYTES);
+
+        buffer = ByteBuffer.allocate(100);
+        buffer.putInt(6);
+        buffer.flip();
+        fc.write(buffer);
+        fc.close();
+
+
+        fc = new FileInputStream(tempFile.toFile()).getChannel();
+        buffer = ByteBuffer.allocate(100);
+        fc.read(buffer);
+        buffer.flip();
+
+        while (buffer.hasRemaining()) {
+            System.out.println(buffer.getInt());
+        }
 
     }
+
+    @Test
+    public void testCopy() throws URISyntaxException, IOException {
+        MappedByteBuffer out = new RandomAccessFile(getClass().getResource("text.txt").toURI().getPath(), "rw").getChannel().map(FileChannel.MapMode.READ_WRITE, 1, 1);
+        out.putChar('E');
+    }
+
+    @Test
+    public void testRead() throws IOException {
+
+        String file = "data.txt";
+        String txt = "Hello World";
+        String txt2 = " Dream";
+
+        FileChannel fc = new FileOutputStream(file).getChannel();
+        fc.write(ByteBuffer.wrap(txt.getBytes()));
+        fc.close();
+
+        // add content to end of file
+        fc = new RandomAccessFile(file, "rw").getChannel();
+        fc.position(fc.size()); // move to the end
+        fc.write(ByteBuffer.wrap(txt2.getBytes()));
+        fc.close();
+
+        // read the file
+        fc = new FileInputStream(file).getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        fc.read(buffer);
+        buffer.flip();
+
+        while (buffer.hasRemaining()) {
+            System.out.print((char) buffer.get());
+        }
+        fc.close();
+
+
+//        buffer.clear();
+//        buffer.putInt(1);
+//        buffer.putInt(2);
+//        buffer.putInt(3);
+//
+//        buffer.flip();
+    }
+
 
     /**
      * your java app lock file, then other software (e.g. notepad) can't modify and save the

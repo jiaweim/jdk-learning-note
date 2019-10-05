@@ -120,6 +120,7 @@ public class PathTest {
     public void testCtr1() {
         Path path = Paths.get("E:", "FileFormat", "C#", "compressedFile.txt");
         assertEquals("E:\\FileFormat\\C#\\compressedFile.txt", path.toString());
+        System.out.println(path.getFileName());
     }
 
     @Test

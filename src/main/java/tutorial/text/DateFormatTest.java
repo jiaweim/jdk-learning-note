@@ -23,20 +23,24 @@ package tutorial.text;
 import org.testng.annotations.Test;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 /**
- *
  * @author JiaweiM
  * @date Aug 13, 2015 10:58:20 AM
  */
-public class DateFormatTest
-{
+public class DateFormatTest {
 
     @Test
-    public void testGetTimeInstance()
-    {
+    public void testToString(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        System.out.println(dateFormat.format(new Date()));
+    }
+
+    @Test
+    public void testGetTimeInstance() {
         Date date = new Date();
         DateFormat df;
 
@@ -55,8 +59,7 @@ public class DateFormatTest
     }
 
     @Test
-    public void testGetDateInstance()
-    {
+    public void testGetDateInstance() {
         Date date = new Date();
         DateFormat df;
 

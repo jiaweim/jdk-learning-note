@@ -28,17 +28,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
- * @Class ArrayDequeTest
  * @author JiaweiM
  * @date Jul 24, 2015 3:43:27 PM
  */
-public class ArrayDequeTest
-{
+public class ArrayDequeTest {
 
     @Test
-    public void testAdd()
-    {
+    public void testAdd() {
         ArrayDeque<Integer> deque = new ArrayDeque<Integer>();
         deque.add(1);
         deque.add(2);

@@ -26,14 +26,15 @@ import java.util.List;
  * @author JiaweiMao on 2017.05.23
  * @since 1.0-SNAPSHOT
  */
-public class PrimeGenerator implements Runnable {
-
+public class PrimeGenerator implements Runnable
+{
     @GuardedBy("this")
     private final List<BigInteger> primes = new ArrayList<>();
     private volatile boolean cancelled;
 
     @Override
-    public void run() {
+    public void run()
+    {
         BigInteger p = BigInteger.ONE;
         while (!cancelled) {
             p = p.nextProbablePrime();
@@ -43,11 +44,13 @@ public class PrimeGenerator implements Runnable {
         }
     }
 
-    public void cancel() {
+    public void cancel()
+    {
         this.cancelled = true;
     }
 
-    public synchronized List<BigInteger> get() {
+    public synchronized List<BigInteger> get()
+    {
         return new ArrayList<>(primes);
     }
 }

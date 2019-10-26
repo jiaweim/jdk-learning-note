@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package tutorial.concurrency;
+package tutorial.lang;
+
+import org.testng.annotations.Test;
 
 /**
  * @author JiaweiMao
  * @version 1.0.0
- * @since 17 Jan 2019, 1:24 PM
+ * @since 17 Oct 2019, 10:48 AM
  */
-public class Calculator implements Runnable {
-    private int number;
+public class CloneableTest {
 
-    public Calculator(int number) {
-        this.number = number;
-    }
-
-    @Override
-    public void run() {
-        for (int i = 1; i <= 10; i++) {
-            System.out.printf("%s: %d * %d = %d\n", Thread.currentThread().getName(), number, i, i * number);
-        }
+    @Test
+    public void testImmutable() {
+        PhoneNumber number = new PhoneNumber(1, 2, 3);
+        PhoneNumber clone = number.clone();
+        System.out.println(clone);
     }
 }

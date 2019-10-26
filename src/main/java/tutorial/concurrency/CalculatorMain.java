@@ -27,11 +27,10 @@ import java.io.PrintWriter;
  * @version 1.0.0
  * @since 17 Jan 2019, 1:25 PM
  */
-public class CalculatorMaiin
-{
+public class CalculatorMain {
+
     @Test
-    public void testState()
-    {
+    public void testState() {
         Thread[] threads = new Thread[10];
         Thread.State[] status = new Thread.State[10];
 
@@ -77,8 +76,7 @@ public class CalculatorMaiin
         }
     }
 
-    private static void writeThreadInfo(PrintWriter pw, Thread thread, Thread.State state)
-    {
+    private static void writeThreadInfo(PrintWriter pw, Thread thread, Thread.State state) {
         pw.printf("Main: ID %d - %s\n", thread.getId(), thread.getName());
         pw.printf("Main: Priority: %d\n", thread.getPriority());
         pw.printf("Main: Old State: %s\n", state);

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -20,6 +21,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class StreamTest
 {
+    @Test
+    void testCreate1()
+    {
+        EP[] arrayOfEmps = {
+                new EP(1, "Jeff Bezos", 100000.0),
+                new EP(2, "Bill Gates", 200000.0),
+                new EP(3, "Mark Zuckerberg", 300000.0)
+        };
+
+        Stream.of(arrayOfEmps).forEach(ep -> assertTrue(ep.getWage() > 10000));
+
+
+    }
+
     @Test
     void testCreate()
     {
@@ -48,7 +63,6 @@ public class StreamTest
         list.add("Italy");
         list.add("Italy");
         list.add("Thursday");
-        list.add("");
         list.add("");
         Stream<String> stream = list.stream().filter(element -> element.contains("d"));
         stream.forEach(System.out::println);
@@ -91,6 +105,8 @@ public class StreamTest
         List<String> collected = Stream.of("A", "b", "hello").map(String::toUpperCase)
                 .collect(Collectors.toList());
         assertEquals(Arrays.asList("A", "B", "HELLO"), collected);
+
+
     }
 
     @Test

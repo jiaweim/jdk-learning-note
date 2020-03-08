@@ -19,7 +19,7 @@ class ThreadName
                 .forEach(Thread::start);
     }
 
-    private static final String PREFIX = "ALEX-";
+    private static final String PREFIX = "MyThread-";
 
     @Test
     void testName()

@@ -16,6 +16,8 @@
 
 package trail.concurrency;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author JiaweiMao
  * @version 1.0.0
@@ -31,8 +33,7 @@ public class SleepMessage
         System.out.format("%s: %s%n", threadName, message);
     }
 
-    private static class MessageLoop
-            implements Runnable
+    private static class MessageLoop implements Runnable
     {
         public void run()
         {
@@ -45,7 +46,7 @@ public class SleepMessage
             try {
                 for (String s : importantInfo) {
                     // Pause for 4 seconds
-                    Thread.sleep(4000);
+                    TimeUnit.SECONDS.sleep(4);
                     // Print a message
                     threadMessage(s);
                 }
@@ -55,8 +56,7 @@ public class SleepMessage
         }
     }
 
-    public static void main(String[] args)
-            throws InterruptedException
+    public static void main(String[] args) throws InterruptedException
     {
         // Delay, in milliseconds before
         // we interrupt MessageLoop

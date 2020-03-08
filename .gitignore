@@ -22,4 +22,5 @@
 
 /.idea/
 /target/
+*.iml
 

@@ -18,20 +18,25 @@ package trail;
 
 public class Main
 {
+    public static int test1()
+    {
+        int i = 0;
+        try {
+            i = 2;
+            return i;
+        } finally {
+            i = 12;
+            System.out.println("finally trumps return.");
+        }
+
+    }
 
     public static void main(String[] args)
     {
-        // write your code here
-        int COUNT_BITS = Integer.SIZE - 3;
-        System.out.println(COUNT_BITS);
-        int CAPACITY = (1 << COUNT_BITS) - 1;
-        System.out.println(CAPACITY);
-        int RUNNING = -1 << COUNT_BITS;
-        System.out.println(RUNNING);
-        int SHUTDOWN = 0 << COUNT_BITS;
-        int STOP = 1 << COUNT_BITS;
-        int TIDYING = 2 << COUNT_BITS;
-        int TERMINATED = 3 << COUNT_BITS;
-
+        System.out.println(test1());
+        Integer s=new Integer(9);
+        Integer t=new Integer(9);
+        Long u=new Long(9);
+        System.out.println(s == t);
     }
 }

@@ -210,4 +210,17 @@ class PathTest
         assertTrue(path.startsWith(begin));
         assertTrue(path.endsWith(end));
     }
+
+    @Test
+    void testHashCode()
+    {
+        Path path1 = Paths.get("D:/a/b/c");
+        Path path2 = Paths.get("D:/a/b/c");
+        assertEquals(path1, path2);
+
+        path1.normalize();
+        Path path3 = Paths.get("D:/a/./b/c");
+
+        System.out.println(path1.equals(path3));
+    }
 }

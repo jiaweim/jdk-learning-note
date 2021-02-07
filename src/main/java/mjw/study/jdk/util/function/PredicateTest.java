@@ -1,0 +1,44 @@
+/*
+ * Copyright 2017 JiaweiMao jiaweiM_philo@hotmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * 
+ * @version 1.00
+ */
+
+package mjw.study.jdk.util.function;
+
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
+
+/**
+ * 
+ * @author JiaweiM
+ * @date Nov 21, 2015 9:52:10 AM
+ */
+public class PredicateTest {
+
+	public static <R> Predicate<R> not(Predicate<R> predicate) {
+		return predicate.negate();
+	}
+
+	public static void main(String[] args) {
+		System.out.println(Stream.of(1, 2, 3, 4, 5, 6, 7).filter(not(c -> c % 2 == 0)).collect(toList()));
+		System.out.println(Stream.of(1, 2, 3, 4, 5, 6, 7).filter(((Predicate<Integer>) c -> c % 2 == 0).negate())
+				.collect(toList()));
+	}
+}
